@@ -1,0 +1,132 @@
+<?php
+
+	inicio();
+  
+	function inicio()
+	{
+        system('clear'); 
+		$a = 0;
+		$b = 0;
+		$c = 0;
+		$intervalo_inicial = 0;
+		$intervalo_final = 0;
+		$x = 0;
+		$result = 0;
+
+		echo "Deseja trabalhar com qual função:\n";
+		echo "1- Função Linear\n";
+		echo "2- Função Exponencial\n";
+		echo "3- Função Quadrática\n";
+		$opcao = readline("Escolha: ");
+
+		switch ($opcao) 
+		{
+			case 1:
+			linear($a, $b, $intervalo_inicial, $intervalo_final);
+			echo "\n";
+			Calcula($opcao, $a, $b, $c, $intervalo_inicial, $intervalo_final);
+			break;
+
+			case 2:
+			exponencial($a, $b, $intervalo_inicial, $intervalo_final);
+			echo "\n";
+			Calcula($opcao, $a, $b, $c, $intervalo_inicial, $intervalo_final);
+			break;
+
+			case 3:
+			quadratica($a, $b, $c, $intervalo_inicial, $intervalo_final);
+			echo "\n";
+			Calcula($opcao, $a, $b, $c, $intervalo_inicial, $intervalo_final);
+			break;
+
+			default:
+			echo "Opção inválida. Por favor, escolha uma opção de 1 a 3.\n";
+			inicio();
+			break;
+		}
+	}
+
+	function linear(&$a, &$b, &$intervalo_inicial, &$intervalo_final)
+	{
+		echo "f(x) = ax + b\n";
+		$a = readline("Valor de a: ");
+		$b = readline("Valor de b: ");
+		$intervalo_inicial = readline("Informe o valor do intervalo inicial de x: ");
+		$intervalo_final = readline("Informe o valor do intervalo final de x: ");
+	}
+
+	function exponencial(&$a, &$b, &$intervalo_inicial, &$intervalo_final)
+	{
+		echo "f(x) = b * a^x\n";
+		$a = readline("Valor de a: ");
+		$b = readline("Valor de b: ");
+		$intervalo_inicial = readline("Informe o valor do intervalo inicial de x: ");
+		$intervalo_final = readline("Informe o valor do intervalo final de x: ");
+	}
+
+	function quadratica(&$a, &$b, &$c, &$intervalo_inicial, &$intervalo_final)
+	{
+		echo "f(x) = ax² + bx + c\n";
+		$a = readline("Valor de a: ");
+		$b = readline("Valor de b: ");
+		$c = readline("Valor de c: ");
+		$intervalo_inicial = readline("Informe o valor do intervalo inicial de x: ");
+		$intervalo_final = readline("Informe o valor do intervalo final de x: ");
+	}
+
+	function Calcula($opcao, $a, $b, $c, $intervalo_inicial, $intervalo_final)
+	{
+		echo "\n";
+		echo "Calculando...\n";
+		for ($x = $intervalo_inicial; $x <= $intervalo_final; $x++) 
+		{
+			if ($opcao == 1) 
+			{
+				$result = $a * $x + $b;
+				echo "f($x) = $result\n";
+			}
+
+			if ($opcao == 2) 
+			{
+				$result = $b * pow($a, $x);
+				echo "f($x) = $result\n";
+			}
+
+			if ($opcao == 3) 
+			{
+				$result = $a * pow($x, 2) + $b * $x + $c;
+				echo "f($x) = $result\n";
+			}
+		}
+		 continuar();
+	}
+	
+	function continuar()
+	{
+		echo "\n";
+		echo "Deseja Continuar usando:\n";
+		echo "1- Sim\n";
+		echo "2- Não\n";
+		$opcao = readline("Escolha: ");
+
+		switch ($opcao) 
+		{
+			case 1:
+			inicio(); // Reinicie o programa
+			break;
+
+			case 2:
+			echo "Saindo...\n";
+			break;
+
+			default:
+			echo "Opção inválida. Por favor, escolha uma opção de 1 a 2.\n";
+			continuar(); // Re-prompt até que uma opção válida seja escolhida
+			break;
+		}
+	}
+	
+	
+?>
+
+
